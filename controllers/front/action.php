@@ -15,6 +15,7 @@ class Easytis_klorel_quotationActionModuleFrontController extends ModuleFrontCon
                 $this->getTaxes();
                 die();
                 break;
+
         }
     }
 
@@ -26,7 +27,7 @@ class Easytis_klorel_quotationActionModuleFrontController extends ModuleFrontCon
         $productUnitprice = Tools::getValue('productUnitprice');
         $productTax = Tools::getValue('productTax');
 
-        $selectedCategoryId = (int)Configuration::get('EASYTIS_KLOREL_QUOTATION_ID_CATEGORY');
+        $selectedCategoryId = (int) Configuration::get('EASYTIS_KLOREL_QUOTATION_ID_CATEGORY');
 
         if (!empty($productName) && !empty($productReference) && !empty($productWholeprice)) {
             $product = new Product();
@@ -37,7 +38,7 @@ class Easytis_klorel_quotationActionModuleFrontController extends ModuleFrontCon
             $product->price = $productUnitprice;
             $product->wholesale_price = $productWholeprice;
             $product->active = false;
-            $product->id_tax_rules_group = (int)$productTax;
+            $product->id_tax_rules_group = (int) $productTax;
 
             $product->name[Configuration::get('PS_LANG_DEFAULT')] = $productName;
 
@@ -55,12 +56,12 @@ class Easytis_klorel_quotationActionModuleFrontController extends ModuleFrontCon
     {
         $taxes = Tax::getTaxes(Context::getContext()->language->id);
 
-        $formattedTaxes = array();
+        $formattedTaxes = [];
         foreach ($taxes as $tax) {
-            $formattedTaxes[] = array(
+            $formattedTaxes[] = [
                 'id_tax' => $tax['id_tax'],
                 'name' => $tax['name'],
-            );
+            ];
         }
 
         header('Content-Type: application/json');

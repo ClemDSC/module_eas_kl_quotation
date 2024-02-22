@@ -26,6 +26,7 @@
 * to avoid any conflicts with others containers.
 */
 $(document).ready(function() {
+
     const $modalDiv = $('#quotationspro_addproduct_modal');
     const $modalHeader = $modalDiv.find('.modal-header');
 
